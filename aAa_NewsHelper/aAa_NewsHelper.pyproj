@@ -25,12 +25,6 @@
     <Compile Include="Gamepedia.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="test.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="test2.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Transmute.py">
       <SubType>Code</SubType>
     </Compile>

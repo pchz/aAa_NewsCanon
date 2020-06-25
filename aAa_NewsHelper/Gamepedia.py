@@ -10,6 +10,7 @@ class Leaguepedia_DB(object):
     def __init__(self, limit = 500):
         self.lpdb = mwclient.Site('lol.gamepedia.com', path='/')
         self.limit = limit
+        # TODO Add caching with sqlite
 
     def _query(self, **kwargs):
         result = []
@@ -105,7 +106,7 @@ class Leaguepedia_DB(object):
 
         result = self._query(
             tables="TournamentResults",
-            fields=f"{', '.join(f'TournamentResults.{field}' for field in League.standings_fields)}",
+            fields=f"{', '.join(f'TournamentResults.{field}' for field in ltm.standings_fields)}",
             where=where,
             **kwargs,)
 
@@ -114,7 +115,7 @@ class Leaguepedia_DB(object):
     def getGames(self, tournament_name=None, **kwargs):
         result = self._query(
             tables="ScoreboardGames",
-            fields=", ".join(League.game_fields),
+            fields=", ".join(ltm.game_fields),
             where=f"ScoreboardGames.Tournament='{tournament_name}'",
             order_by="ScoreboardGames.DateTime_UTC",
             **kwargs,)
@@ -239,15 +240,25 @@ if __name__ == '__main__':
     from pprint import pprint
     Leaguepedia = Leaguepedia_DB()
     Valorantpedia = Valorant_DB()
-    pprint(Valorantpedia.getStandings('100 Thieves Invitational 2020'))
+    #pprint(Valorantpedia.getStandings('100 Thieves Invitational 2020'))
     #pprint(Leaguepedia.getTournaments('Korea', '2020'))
-    #pprint(Leaguepedia.getTournaments('LCK 2020 Summer'))
-    #rosters = Leaguepedia.getSeasonRosters('LCK 2020 Summer')
+    tournament = Leaguepedia.getTournaments('LCK 2020 Summer')
+    rosters = Leaguepedia.getSeasonRosters('LCK 2020 Summer')
     #pprint(Leaguepedia.getSeasonRosters('LCK 2020 Summer'))
-    #pprint(Leaguepedia.getStandings('LEC 2020 Summer'))
+    standings = Leaguepedia.getStandings('LEC 2020 Summer')
     #pprint(Leaguepedia.getTeamLogo('Afreeca Freecs'))
     #pprint(Leaguepedia.getGames('LEC 2020 Summer'))
-    #games = Leaguepedia.getGames('LEC 2020 Summer')
-    #import json
-    #with open('games_nice.json', 'w') as f:
-    #    json.dump(games, f)
+    games = Leaguepedia.getGames('LEC 2020 Summer')
+    import json
+
+    with open('games.json', 'w') as f:
+        json.dump(games, f)
+
+    with open('tournament.json', 'w') as f:
+        json.dump(tournament, f)
+
+    with open('rosters.json', 'w') as f:
+        json.dump(rosters, f)
+
+    with open('standings.json', 'w') as f:
+        json.dump(standings, f)

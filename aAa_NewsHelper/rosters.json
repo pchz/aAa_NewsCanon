@@ -1,0 +1,345 @@
+{
+    "Data": [{
+        "teams": [{
+            "team": "Afreeca Freecs",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/7/70/Afreeca_Freecslogo_square.png?version=4c96509aef782666d1eaa06c48a54bf2",
+            "players": [{
+                "ID": "Kiin",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Spirit",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Fly (Song Yong-jun)",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Mystic",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Ben",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "viNylCat",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Rigby",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "DAMWON Gaming",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/6/6d/DAMWON_Gaminglogo_square.png?version=219e0f68641e6df4a4024d6d7f6dd0e6",
+            "players": [{
+                "ID": "Nuguri",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Canyon",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "ShowMaker",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Ghost (Jang Yong-jun)",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "BeryL",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Zefa",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Daeny",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "DRX",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/d/d3/DRXlogo_square.png?version=caa41259f4a317f6c7aa8db8f5b0f49f",
+            "players": [{
+                "ID": "Doran (Choi Hyeon-joon)",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Pyosik",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Chovy",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Deft",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Keria",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "cvMax",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Museong",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "Gen.G",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/e/e3/Gen.Glogo_square.png",
+            "players": [{
+                "ID": "Rascal",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Clid",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Bdd",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Ruler",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Life",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kellin",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "oDin (Ju Yeong-dal)",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Tom",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "Hanwha Life Esports",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/a/a6/Hanwha_Life_Esportslogo_square.png?version=3001f549a72a193fe749694c9d4a6b45",
+            "players": [{
+                "ID": "CuVee",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "DuDu (Lee Dong-ju)",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Haru",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "CaD",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Lava",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Mireu",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Viper (Park Do-hyeon)",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Lehends",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kezman",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "NoFe",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "KT Rolster",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/f/f8/KT_Rolsterlogo_square.png?version=de9c16747de3b3d456caf5a67e80a156",
+            "players": [{
+                "ID": "SoHwan",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Smeb",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "bonO (Kim Gi-beom)",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Ucal",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kuro",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Aiming",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "TusiN",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Hirai",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Acorn",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "SANDBOX Gaming",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/0/0c/SANDBOX_Gaminglogo_square.png?version=6353bf512b9a8d13e83c9f9b240c0a72",
+            "players": [{
+                "ID": "Summit",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "OnFleek",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Dove",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Route",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "GorillA",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Joker (Cho Jae-eup)",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "SeolHaeOne Prince",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/c/cc/SeolHaeOne_Princelogo_square.png?version=82c07b24e2aa21662881ee49bf64b3bf",
+            "players": [{
+                "ID": "ikssu",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Flawless",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Mickey (Son Young-min)",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "HyBriD (Lee Woo-jin)",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Secret",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Sickness",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Winged",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "T1",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/a/a2/T1logo_square.png?version=b5c1257f2dd474d4e4229e914eb08d5d",
+            "players": [{
+                "ID": "Canna",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Cuzz",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Faker",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Teddy",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Effort",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kuri",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kim (Kim Jeong-soo)",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Comet",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }, {
+            "team": "Team Dynamics",
+            "logo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/e/e9/Team_Dynamicslogo_square.png?version=b67813075d9fb91f067a2a315cbcf5fd",
+            "players": [{
+                "ID": "Rich (Lee Jae-won)",
+                "Role": "Top Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Beyond (Kim Kyu-seok)",
+                "Role": "Jungler",
+                "Flag": "South Korea"
+            }, {
+                "ID": "Kuzan",
+                "Role": "Mid Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "deokdam",
+                "Role": "Bot Laner",
+                "Flag": "South Korea"
+            }, {
+                "ID": "GuGer",
+                "Role": "Support",
+                "Flag": "South Korea"
+            }, {
+                "ID": "sBs",
+                "Role": "Coach",
+                "Flag": "South Korea"
+            }]
+        }]
+    }]
+}

@@ -129,7 +129,7 @@ def transmute_game(game):
     for m in d['Data']:
         tournament = GameTournament(Tournament_Name = m["Tournament"] )
         tournament['Game'] = []
-        _game =  League.Game(Team1=m["Team1"],
+        _game =  Game(Team1=m["Team1"],
                             Team2=m["Team2"],
                             Winner=m["Winner"],
                             Gamelength_Number=m["Gamelength Number"],

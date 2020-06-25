@@ -1,0 +1,15 @@
+[{
+    "name": "LCK 2020 Summer",
+    "start": "2020-06-17",
+    "end": "2020-08-23",
+    "region": "Korea",
+    "league": "LCK",
+    "leagueShort": "",
+    "rulebook": "http://static.leagueoflegends.co.kr/esports/files/%EB%A6%AC%EA%B7%B8%20%EC%98%A4%EB%B8%8C%20%EB%A0%88%EC%A0%84%EB%93%9C%20%EC%B1%94%ED%94%BC%EC%96%B8%EC%8A%A4%20%EC%BD%94%EB%A6%AC%EC%95%84%202020_%EA%B3%B5%EC%8B%9D%20%EA%B7%9C%EC%A0%95%EC%A7%91.pdf",
+    "tournamentLevel": "Primary",
+    "isQualifier": true,
+    "isPlayoffs": true,
+    "isOfficial": true,
+    "overviewPage": "LCK/2020 Season/Summer Season",
+    "prizepool": ""
+}]

@@ -3,193 +3,207 @@ from collections import defaultdict
 import urllib.parse
 from datetime import datetime, timezone
 
-# Tournaments
+class League():
 
-tournaments_fields = {
-    "Name",
-    "DateStart",
-    "Date",
-    "Region",
-    "League",
-    "Rulebook",
-    "TournamentLevel",
-    "IsQualifier",
-    "IsPlayoffs",
-    "IsOfficial",
-    "OverviewPage",
-    "Prizepool ",
-}
+    tournaments_fields = {
+        "Name",
+        "DateStart",
+        "Date",
+        "Region",
+        "League",
+        "Rulebook",
+        "TournamentLevel",
+        "IsQualifier",
+        "IsPlayoffs",
+        "IsOfficial",
+        "OverviewPage",
+        "Prizepool ",
+    }
 
-class GamepediaTournament(TypedDict):
-    name: str
+    class Tournament(TypedDict):
+        name: str
 
-    start: str  # Expressed as YYYY-MM-DD
-    end: str  # Expressed as YYYY-MM-DD
+        start: str  # Expressed as YYYY-MM-DD
+        end: str  # Expressed as YYYY-MM-DD
 
-    region: str
-    league: str
-    leagueShort: str
+        region: str
+        league: str
+        leagueShort: str
 
-    rulebook: str  # Rulebook URL
+        rulebook: str  # Rulebook URL
 
-    tournamentLevel: str
+        tournamentLevel: str
 
-    isQualifier: bool
-    isPlayoffs: bool
-    isOfficial: bool
+        isQualifier: bool
+        isPlayoffs: bool
+        isOfficial: bool
 
-    overviewPage: str
+        overviewPage: str
 
-    prizepool: str
+        prizepool: str
 
-def transmute_tournament(tournament: dict) -> GamepediaTournament:
-    return GamepediaTournament(
-        name=tournament["Name"],
-        start=tournament["DateStart"],
-        end=tournament["Date"],
-        region=tournament["Region"],
-        league=tournament["League"],
-        leagueShort=tournament["League Short"],
-        rulebook=tournament["Rulebook"],
-        tournamentLevel=tournament["TournamentLevel"],
-        isQualifier=bool(tournament["IsQualifier"]),
-        isPlayoffs=bool(tournament["IsPlayoffs"]),
-        isOfficial=bool(tournament["IsOfficial"]),
-        overviewPage=tournament["OverviewPage"],
-        prizepool=tournament["Prizepool"],
+    def transmute_tournament(self, tournament: dict) -> League.Tournament:
+        return League.Tournament(
+            name=tournament["Name"],
+            start=tournament["DateStart"],
+            end=tournament["Date"],
+            region=tournament["Region"],
+            league=tournament["League"],
+            leagueShort=tournament["League Short"],
+            rulebook=tournament["Rulebook"],
+            tournamentLevel=tournament["TournamentLevel"],
+            isQualifier=bool(tournament["IsQualifier"]),
+            isPlayoffs=bool(tournament["IsPlayoffs"]),
+            isOfficial=bool(tournament["IsOfficial"]),
+            overviewPage=tournament["OverviewPage"],
+            prizepool=tournament["Prizepool"],
+        )
+
+    # Player Rosters
+
+    player_fields = {
+        "Team",
+        "ID",
+        "Name",
+        "NationalityPrimary",
+        "Role",
+    }
+
+    class Player(TypedDict):
+        ID: str
+        Name: str
+        Flag: str
+        Role: str
+
+    class Team(TypedDict):
+        team: str
+        players: list
+        logo: str
+
+    # Standings
+
+    standings_fields = {
+        "Team",
+        "Place_Number",
+    }
+
+    class Standings(TypedDict):
+        team: str
+        place_number: int
+
+    def transmute_standings(self, standings: dict) -> League.Standings:
+        return League.Standings(
+        team=standings["Team"],
+        place_number=standings["Place Number"],
     )
 
-# Player Rosters
+    # Games
 
-player_fields = {
-    "Team",
-    "ID",
-    "Name",
-    "NationalityPrimary",
-    "Role",
-}
+    game_fields = {
+        "Tournament",
+        "Team1",
+        "Team2",
+        "Winner",
+        "Gamelength_Number",
+        "DateTime_UTC",
+        "Team1Score",
+        "Team2Score",
+        "UniqueGame",
+    }
 
-class GamepediaPlayer(TypedDict):
-    ID: str
-    Name: str
-    Flag: str
-    Role: str
+    class Game(TypedDict):
+        Team1: str
+        Team2: str
+        Winner: str
+        Gamelength_Number: int
+        DateTime_UTC: str
+        Team1Score: int
+        Team2Score: int
+        UniqueGame: str
 
-class GamepediaTeam(TypedDict):
-    team: str
-    players: list
-    logo: str
+    class GameTournament(TypedDict):
+        Tournament_Name: str
 
-# Standings
+    def transmute_game(self, game):
+        d = defaultdict(list)
+        tournament = defaultdict(list)
+        d['Data'].append(game)
+        for m in d['Data']:
+            tournament = League.GameTournament(Tournament_Name = m["Tournament"] )
+            tournament['Game'] = []
+            _game =  League.Game(Team1=m["Team1"],
+                                Team2=m["Team2"],
+                                Winner=m["Winner"],
+                                Gamelength_Number=m["Gamelength Number"],
+                                DateTime_UTC=m["DateTime UTC"],
+                                Team1Score=m["Team1Score"],
+                                Team2Score=m["Team2Score"],
+                                UniqueGame=m["UniqueGame"],)
+            tournament['Game'].append(_game)
 
-standings_fields = {
-    "Team",
-    "Place_Number",
-}
+        return tournament
 
-class GamepediaStandings(TypedDict):
-    team: str
-    place_number: int
+class Valorant():
+    tournaments_fields = {
+        "Name",
+        "DateStart",
+        "Date",
+        "Region",
+        "Rulebook",
+        "IsQualifier",
+        "IsPlayoffs",
+        "IsOfficial",
+        "OverviewPage",
+        "Prizepool ",
+    }
 
-def transmute_standings(standings: dict) -> GamepediaStandings:
-    return GamepediaStandings(
-    team=standings["Team"],
-    place_number=standings["Place Number"],
-)
+    class Tournament(TypedDict):
+        name: str
 
-# Games
+        start: str  # Expressed as YYYY-MM-DD
+        end: str  # Expressed as YYYY-MM-DD
 
-game_fields = {
-    "Tournament",
-    "Team1",
-    "Team2",
-    "Winner",
-    "Gamelength_Number",
-    "DateTime_UTC",
-    "Team1Score",
-    "Team2Score",
-    "UniqueGame",
-}
+        region: str
 
-class GamepediaGame(TypedDict):
-    Team1: str
-    Team2: str
-    Winner: str
-    Gamelength_Number: int
-    DateTime_UTC: str
-    Team1Score: int
-    Team2Score: int
-    UniqueGame: str
+        rulebook: str  # Rulebook URL
 
-class GamepediaGameTournament(TypedDict):
-    Tournament_Name: str
+        isQualifier: bool
+        isPlayoffs: bool
+        isOfficial: bool
 
-def transmute_game(game):
-    d = defaultdict(list)
-    tournament = defaultdict(list)
-    tournament_data = defaultdict(list)
-    d['Data'].append(game)
-    for m in d['Data']:
-        tournament = GamepediaGameTournament(Tournament_Name = m["Tournament"] )
-        tournament['Game'] = []
-        _game =  GamepediaGame(Team1=m["Team1"],
-                               Team2=m["Team2"],
-                               Winner=m["Winner"],
-                               Gamelength_Number=m["Gamelength Number"],
-                               DateTime_UTC=m["DateTime UTC"],
-                               Team1Score=m["Team1Score"],
-                               Team2Score=m["Team2Score"],
-                               UniqueGame=m["UniqueGame"],)
-        tournament['Game'].append(_game)
+        overviewPage: str
 
-    return tournament
+        prizepool: str
 
-
-# Other than League
-
-
-tournaments_fields_light = {
-    "Name",
-    "DateStart",
-    "Date",
-    "Region",
-    "Rulebook",
-    "IsQualifier",
-    "IsPlayoffs",
-    "IsOfficial",
-    "OverviewPage",
-    "Prizepool ",
-}
-
-class GamepediaTournamentLight(TypedDict):
-    name: str
-
-    start: str  # Expressed as YYYY-MM-DD
-    end: str  # Expressed as YYYY-MM-DD
-
-    region: str
-
-    rulebook: str  # Rulebook URL
-
-    isQualifier: bool
-    isPlayoffs: bool
-    isOfficial: bool
-
-    overviewPage: str
-
-    prizepool: str
-
-def transmute_tournament_light(tournament: dict) -> GamepediaTournamentLight:
-    return GamepediaTournamentLight(
-        name=tournament["Name"],
-        start=tournament["DateStart"],
-        end=tournament["Date"],
-        region=tournament["Region"],
-        rulebook=tournament["Rulebook"],
-        isQualifier=bool(tournament["IsQualifier"]),
-        isPlayoffs=bool(tournament["IsPlayoffs"]),
-        isOfficial=bool(tournament["IsOfficial"]),
-        overviewPage=tournament["OverviewPage"],
-        prizepool=tournament["Prizepool"],
+    def transmute_tournament(self, tournament: dict) -> League.Tournament:
+        return League.Tournament(
+            name=tournament["Name"],
+            start=tournament["DateStart"],
+            end=tournament["Date"],
+            region=tournament["Region"],
+            rulebook=tournament["Rulebook"],
+            isQualifier=bool(tournament["IsQualifier"]),
+            isPlayoffs=bool(tournament["IsPlayoffs"]),
+            isOfficial=bool(tournament["IsOfficial"]),
+            overviewPage=tournament["OverviewPage"],
+            prizepool=tournament["Prizepool"],
     )
 
+    player_fields = {
+        "Team",
+        "ID",
+        "Name",
+        "NationalityPrimary",
+        "Role",
+    }
+
+    class Player(TypedDict):
+        ID: str
+        Name: str
+        Flag: str
+        Role: str
+
+    class Team(TypedDict):
+        team: str
+        players: list
+        logo: str

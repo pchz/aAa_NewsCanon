@@ -4,8 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1d5e6304-a6bb-4851-a40b-0eaa86968ede</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>Gamepedia.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +24,13 @@
     <Compile Include="Gamepedia.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="transmute_valorant.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Transmute.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="transmute_league.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="valorant_patchnotes.py">

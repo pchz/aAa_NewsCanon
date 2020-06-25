@@ -1,8 +1,10 @@
 import mwclient
 from pprint import pprint
-from Transmute import transmute_tournament, tournaments_fields, GamepediaTournament, player_fields, GamepediaPlayer, standings_fields, transmute_standings, GamepediaStandings, GamepediaTeam, transmute_game, GamepediaGame, game_fields, tournaments_fields_light, transmute_tournament_light, GamepediaTournamentLight
+import transmute_league as ltm
+import transmute_valorant as vtm
 from typing import List
 from collections import defaultdict
+
 
 class Leaguepedia_DB(object):
     def __init__(self, limit = 500):
@@ -45,12 +47,12 @@ class Leaguepedia_DB(object):
         result = self._query(
             tables="Tournaments, Leagues",
             join_on="Tournaments.League = Leagues.League",
-            fields=f"Leagues.League_Short, {', '.join(f'Tournaments.{field}' for field in tournaments_fields)}",
+            fields=f"Leagues.League_Short, {', '.join(f'Tournaments.{field}' for field in ltm.tournaments_fields)}",
             where=where,
             **kwargs,)
 
 
-        return [transmute_tournament(tournament) for tournament in result]
+        return [ltm.transmute_tournament(tournament) for tournament in result]
 
     def getTeamLogo(self,team_name: str, _retry=True) -> str:
 
@@ -76,8 +78,6 @@ class Leaguepedia_DB(object):
         return url
 
     def getSeasonRosters(self, season, **kwargs):
-        where = f'TournamentRosters.Tournament="{season}"'
-
         result = self.lpdb.api('cargoquery',
                 limit = 'max',
                 tables = 'TournamentRosters=TR',
@@ -86,15 +86,14 @@ class Leaguepedia_DB(object):
 
         d = defaultdict(list)
         teams = defaultdict(list)
-        players = defaultdict(list)
         for m in result['cargoquery']:
-            team = GamepediaTeam(team = m['title']['Team'], logo = self.getTeamLogo(m['title']['Team']))
+            team = ltm.Team(team = m['title']['Team'], logo = self.getTeamLogo(m['title']['Team']))
             team['players'] = []
             _roles = m['title']['Roles'].split(';;')
             _ids = m['title']['RosterLinks'].split(';;')
             _flags = m['title']['Flags'].split(';;')
             for x,y,z in zip(_roles,_ids,_flags):
-                player = GamepediaPlayer(ID = y, Role = x, Flag = z)
+                player = ltm.Player(ID = y, Role = x, Flag = z)
                 team['players'].append(player)
 
             teams['teams'].append(team)
@@ -106,21 +105,21 @@ class Leaguepedia_DB(object):
 
         result = self._query(
             tables="TournamentResults",
-            fields=f"{', '.join(f'TournamentResults.{field}' for field in standings_fields)}",
+            fields=f"{', '.join(f'TournamentResults.{field}' for field in League.standings_fields)}",
             where=where,
             **kwargs,)
 
-        return [transmute_standings(standings) for standings in result]
+        return [ltm.transmute_standings(standings) for standings in result]
 
     def getGames(self, tournament_name=None, **kwargs):
         result = self._query(
             tables="ScoreboardGames",
-            fields=", ".join(game_fields),
+            fields=", ".join(League.game_fields),
             where=f"ScoreboardGames.Tournament='{tournament_name}'",
             order_by="ScoreboardGames.DateTime_UTC",
             **kwargs,)
 
-        return [transmute_game(game) for game in result]
+        return [ltm.transmute_game(game) for game in result]
 
 class Valorant_DB(object):
     def __init__(self, limit = 500):
@@ -160,11 +159,11 @@ class Valorant_DB(object):
 
         result = self._query(
             tables="Tournaments",
-            fields=f"{', '.join(f'Tournaments.{field}' for field in tournaments_fields_light)}",
+            fields=f"{', '.join(f'Tournaments.{field}' for field in vtm.tournaments_fields)}",
             where=where,
             **kwargs,)
 
-        return [transmute_tournament_light(tournament) for tournament in result]
+        return [vtm.transmute_tournament(tournament) for tournament in result]
 
     def getTeamLogo(self,team_name: str, _retry=True) -> str:
 
@@ -202,13 +201,13 @@ class Valorant_DB(object):
         teams = defaultdict(list)
         players = defaultdict(list)
         for m in result['cargoquery']:
-            team = GamepediaTeam(team = m['title']['Team'], logo = self.getTeamLogo(m['title']['Team']))
+            team = vtm.Team(team = m['title']['Team'], logo = self.getTeamLogo(m['title']['Team']))
             team['players'] = []
             _roles = m['title']['Roles'].split(';;')
             _ids = m['title']['RosterLinks'].split(';;')
             _flags = m['title']['Flags'].split(';;')
             for x,y,z in zip(_roles,_ids,_flags):
-                player = GamepediaPlayer(ID = y, Role = x, Flag = z)
+                player = vtm.Player(ID = y, Role = x, Flag = z)
                 team['players'].append(player)
 
             teams['teams'].append(team)
@@ -220,21 +219,21 @@ class Valorant_DB(object):
 
         result = self._query(
             tables="TournamentResults",
-            fields=f"{', '.join(f'TournamentResults.{field}' for field in standings_fields)}",
+            fields=f"{', '.join(f'TournamentResults.{field}' for field in ltm.standings_fields)}",
             where=where,
             **kwargs,)
 
-        return [transmute_standings(standings) for standings in result]
+        return [ltm.transmute_standings(standings) for standings in result]
 
     def getGames(self, tournament_name=None, **kwargs):
         result = self._query(
-            tables="ScoreboardGames",
-            fields=", ".join(game_fields),
-            where=f"ScoreboardGames.Tournament='{tournament_name}'",
-            order_by="ScoreboardGames.DateTime_UTC",
+            tables="MatchSchedule",
+            fields=", ".join(vtm.game_fields),
+            where=f"MatchSchedule.OverviewPage='{tournament_name}'",
+            order_by="MatchSchedule.DateTime_UTC",
             **kwargs,)
 
-        return [transmute_game(game) for game in result]
+        return [vtm.transmute_game(game) for game in result]
 
 if __name__ == '__main__':
     from pprint import pprint

@@ -69,13 +69,12 @@ player_fields = {
 
 class Player(TypedDict):
     ID: str
-    Name: str
     Flag: str
     Role: str
 
 class Team(TypedDict):
     team: str
-    players: list
+    Players: list
     logo: str
 
 # Standings

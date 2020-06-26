@@ -27,9 +27,6 @@
     <Compile Include="transmute_valorant.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Transmute.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="transmute_league.py">
       <SubType>Code</SubType>
     </Compile>

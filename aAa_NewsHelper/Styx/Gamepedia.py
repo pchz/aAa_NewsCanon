@@ -1,10 +1,8 @@
 import mwclient
-from pprint import pprint
-import transmute_league as ltm
-import transmute_valorant as vtm
+import Styx.transmute_league as ltm
+import Styx.transmute_valorant as vtm
 from typing import List
 from collections import defaultdict
-
 
 class Leaguepedia_DB(object):
     def __init__(self, limit = 500):
@@ -85,7 +83,6 @@ class Leaguepedia_DB(object):
                 fields = 'TR.Team, TR.RosterLinks, TR.Roles, TR.Flags',
                 where = f'TR.Tournament="{season}"')
 
-        d = defaultdict(list)
         teams = defaultdict(list)
         for m in result['cargoquery']:
             team = ltm.Team(team = m['title']['Team'], logo = self.getTeamLogo(m['title']['Team']))
@@ -98,8 +95,7 @@ class Leaguepedia_DB(object):
                 team['players'].append(player)
 
             teams['teams'].append(team)
-        d['Data'].append(teams)
-        return d
+        return teams
 
     def getStandings(self, event, **kwargs):
         where = f'TournamentResults.Event="{event}"'
@@ -198,7 +194,6 @@ class Valorant_DB(object):
                 fields = 'TR.Team, TR.RosterLinks, TR.Roles, TR.Flags',
                 where = f'TR.Tournament="{season}"')
 
-        d = defaultdict(list)
         teams = defaultdict(list)
         players = defaultdict(list)
         for m in result['cargoquery']:
@@ -212,8 +207,7 @@ class Valorant_DB(object):
                 team['players'].append(player)
 
             teams['teams'].append(team)
-        d['Data'].append(teams)
-        return d
+        return teams
 
     def getStandings(self, event, **kwargs):
         where = f'TournamentResults.Event="{event}"'

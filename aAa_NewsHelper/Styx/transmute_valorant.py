@@ -58,7 +58,6 @@ player_fields = {
 
 class Player(TypedDict):
     ID: str
-    Name: str
     Flag: str
     Role: str
 

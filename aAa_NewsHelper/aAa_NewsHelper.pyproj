@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1d5e6304-a6bb-4851-a40b-0eaa86968ede</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Gamepedia.py</StartupFile>
+    <StartupFile>render.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,18 +21,34 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gamepedia.py">
+    <Compile Include="Styx\Gamepedia.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="transmute_valorant.py">
+    <Compile Include="Styx\transmute_valorant.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="transmute_league.py">
+    <Compile Include="Styx\transmute_league.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="valorant_patchnotes.py">
+    <Compile Include="render.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Styx\valorant_patchnotes.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Styx\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styx\templates\CompetitionLeague.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styx\" />
+    <Folder Include="Styx\templates\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

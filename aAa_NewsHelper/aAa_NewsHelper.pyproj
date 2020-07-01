@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1d5e6304-a6bb-4851-a40b-0eaa86968ede</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>render.py</StartupFile>
+    <StartupFile>utils.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

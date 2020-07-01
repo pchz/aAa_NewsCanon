@@ -108,6 +108,16 @@ class Leaguepedia_DB(object):
 
         return [ltm.transmute_standings(standings) for standings in result]
 
+    def getMatch(self, tournament_name=None, **kwargs):
+        result = self._query(
+            tables="MatchSchedule",
+            fields=", ".join(ltm.match_fields),
+            where=f"MatchSchedule.ShownName='{tournament_name}'",
+            order_by="MatchSchedule.DateTime_UTC",
+            **kwargs,)
+
+        return [ltm.transmute_match(game) for game in result]
+
     def getGames(self, tournament_name=None, **kwargs):
         result = self._query(
             tables="ScoreboardGames",
@@ -115,7 +125,7 @@ class Leaguepedia_DB(object):
             where=f"ScoreboardGames.Tournament='{tournament_name}'",
             order_by="ScoreboardGames.DateTime_UTC",
             **kwargs,)
-
+    
         return [ltm.transmute_game(game) for game in result]
 
 class Valorant_DB(object):
@@ -236,23 +246,23 @@ if __name__ == '__main__':
     Valorantpedia = Valorant_DB()
     #pprint(Valorantpedia.getStandings('100 Thieves Invitational 2020'))
     #pprint(Leaguepedia.getTournaments('Korea', '2020'))
-    tournament = Leaguepedia.getTournaments('LCK 2020 Summer')
-    rosters = Leaguepedia.getSeasonRosters('LCK 2020 Summer')
+    #tournament = Leaguepedia.getTournaments('LPL 2020 Summer')
+    #rosters = Leaguepedia.getSeasonRosters('LCK 2020 Summer')
     #pprint(Leaguepedia.getSeasonRosters('LCK 2020 Summer'))
-    standings = Leaguepedia.getStandings('LEC 2020 Summer')
+    #standings = Leaguepedia.getStandings('LPL 2020 Summer')
     #pprint(Leaguepedia.getTeamLogo('Afreeca Freecs'))
     #pprint(Leaguepedia.getGames('LEC 2020 Summer'))
-    games = Leaguepedia.getGames('LEC 2020 Summer')
+    games = Leaguepedia.getGames('LPL 2020 Summer')
     import json
 
     with open('games.json', 'w') as f:
         json.dump(games, f)
 
-    with open('tournament.json', 'w') as f:
-        json.dump(tournament, f)
+    #with open('tournament.json', 'w') as f:
+    #    json.dump(tournament, f)
 
-    with open('rosters.json', 'w') as f:
-        json.dump(rosters, f)
+    #with open('rosters.json', 'w') as f:
+    #    json.dump(rosters, f)
 
-    with open('standings.json', 'w') as f:
-        json.dump(standings, f)
+    #with open('standings.json', 'w') as f:
+        #json.dump(standings, f)

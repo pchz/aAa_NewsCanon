@@ -49,7 +49,6 @@ def imageTeamName(teamName):
 
     return 'https://www.team-aaa.com/upload/admin/Logos/' + teamName + '.png'
 
-
 def getroleicon(role):
     if role == 'Top Laner':
         return top_icon

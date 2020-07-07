@@ -19,7 +19,7 @@ class League_Template(object):
         self.env.globals['imagecheck'] = utils.imagecheck
         self.env.globals['imageurl'] = utils.imageTeamName
 
-    def renderCompetition(self,tournamentName,embedName):
+    def renderCompetitionLeague(self,tournamentName,embedName):
         template = self.env.get_template('CompetitionLeague.html')
         tournamentData = self.Leaguepedia.getTournaments(tournamentName)
         rosterData = self.Leaguepedia.getSeasonRosters(tournamentName)
@@ -33,4 +33,4 @@ if __name__ == '__main__':
     LeagueTemplate = League_Template()
     #pprint(LeagueTemplate.renderCompetition('LCK 2020 Summer'))
     with open('test.html', 'w', encoding="utf-8") as file:
-        file.write(LeagueTemplate.renderCompetition('LCK 2020 Summer','ogaminglol'))
+        file.write(LeagueTemplate.renderCompetitionLeague('LCK 2020 Summer','ogaminglol'))

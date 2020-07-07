@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styx\templates\CompetitionLeague.html" />
+    <Content Include="Styx\templates\CompetitionPoules.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styx\" />

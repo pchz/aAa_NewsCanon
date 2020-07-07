@@ -1,0 +1,89 @@
+﻿[NouvellePage:&quot;Saison r&eacute;guli&egrave;re&quot;]
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="https://www.team-aaa.com/css/style.css?1337" rel="stylesheet" />
+
+<h2 class="sub-title2"><span style="color:#c0392b;"><strong>Le Stream</strong></span></h2>
+
+<p style="text-align: center;"><iframe allowfullscreen="true" frameborder="0" height="410" scrolling="no" src="https://player.twitch.tv/?channel={{ embedName }}&amp;autoplay=false&amp;parent=www.team-aaa.com" width="720"></iframe></p>
+
+<h2 class="sub-title2"><span style="color:#c0392b;"><strong>Informations g&eacute;n&eacute;rales</strong></span></h2>
+
+<p>
+    <strong>D&eacute;nomination</strong>&nbsp;: {{ tournamentData.0.name }}<br />
+    <strong>Début&nbsp;</strong>: {{ date(tournamentData.0.start) }}<br />
+    <strong>Fin&nbsp;</strong>: {{ date(tournamentData.0.end) }}<br />
+    <strong>Lieu&nbsp;</strong>: {{ tournamentData.0.region }}<br />
+    <strong>Format</strong>&nbsp;: <br />
+    <strong>Cashprize&nbsp;:</strong> {{ tournamentData.0.prizepool }}<br />
+    <strong>Rulebook&nbsp;:</strong> <a href="{{ tournamentData.0.rulebook }}">Lien</a> <br />
+</p>
+
+<h2 class="sub-title2"><span style="color:#c0392b;"><strong>Le programme de la semaine</strong></span></h2>
+
+
+<h2 class="sub-title2"><span style="color:#c0392b;"><strong>Classement et r&eacute;sultats</strong></span></h2>
+
+<div class="container-fluid" style="
+        width: 600px;
+">
+    <h4 style="text-align:center">Classement {{ tournamentData.0.name }}</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Équipe</th>
+                <th scope="col">Victoires</th>
+                <th scope="col">Défaites</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for keys in standings %}
+            <tr>
+                <th scope="row">{{ round(standings[keys].rank) }}</th>
+                <td> <img src="{{ imageurl(standings[keys].name) }}" style="height:24px" /> {{ standings[keys].name }}</td>
+                <td style="text-align:center">{{ round(standings[keys].wins) }}</td>
+                <td style="text-align:center">{{ round(standings[keys].losses) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+<h2 class="sub-title2"><strong><span style="color:#c0392b;">La preview de la r&eacute;dac&#39;</span></strong></h2>
+
+
+<h2 class="sub-title2"><strong><span style="color:#c0392b;">Composition des &eacute;quipes</span></strong></h2>
+
+<div>
+    {% for teams in rosterData['teams'] %}
+    <div class="container-fluid" style="width: 600px; padding: 15px;">
+        <div class="row">
+            <div class="col-md-12" style="text-align: center">
+                <b>{{ teams.team }}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="{{ imagecheck(teams.team,teams.logo) }}" style="height:105px" />
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    {% for players in teams.players %}
+                    <div class="col-md-12">
+                        <img src="https://www.team-aaa.com/img/flags/{{ countries(players.Flag) }}.png" /> <b>{{ players.ID }}</b> {{ role(players.Role) | safe }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<p style="font-size: 12px">Source: <a href="https://lol.gamepedia.com/">Leaguepedia</a></p>
+
+[NouvellePage:&quot;Calendrier et r&eacute;sultats de la saison r&eacute;guli&egrave;re&quot;]
+
+
+

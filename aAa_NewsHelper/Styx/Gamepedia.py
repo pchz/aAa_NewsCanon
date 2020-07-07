@@ -118,6 +118,17 @@ class Leaguepedia_DB(object):
 
         return [ltm.transmute_match(game) for game in result]
 
+    def getMatchGroups(self, tournament_name=None, **kwargs):
+        result = self._query(
+            tables="MatchSchedule, TournamentGroups",
+            fields=f"TournamentGroups.GroupDisplay, {', '.join(f'MatchSchedule.{field}' for field in ltm.match_fields)}",
+            join_on="MatchSchedule.PageAndTeam1 = TournamentGroups.PageAndTeam",
+            where=f"MatchSchedule.ShownName='{tournament_name}'",
+            order_by="MatchSchedule.DateTime_UTC",
+            **kwargs,)
+
+        return [ltm.transmute_matchgroup(game) for game in result]
+
     def getGames(self, tournament_name=None, **kwargs):
         result = self._query(
             tables="ScoreboardGames",
@@ -127,6 +138,20 @@ class Leaguepedia_DB(object):
             **kwargs,)
     
         return [ltm.transmute_game(game) for game in result]
+
+    def getGroups(self, tournament_name=None, **kwargs):
+        result = self._query(
+        tables="TournamentGroups",
+        fields=", ".join(ltm.group_fields),
+        where=f"TournamentGroups.OverviewPage='{tournament_name}'",
+        **kwargs,)
+
+        dd = defaultdict(list)
+    
+        for d in result:
+            dd[d['GroupName']].append(d['Team'])
+
+        return dd
 
 class Valorant_DB(object):
     def __init__(self, limit = 500):
@@ -252,11 +277,11 @@ if __name__ == '__main__':
     #standings = Leaguepedia.getStandings('LPL 2020 Summer')
     #pprint(Leaguepedia.getTeamLogo('Afreeca Freecs'))
     #pprint(Leaguepedia.getGames('LEC 2020 Summer'))
-    games = Leaguepedia.getGames('LPL 2020 Summer')
-    import json
+    #games = Leaguepedia.getMatch('Underdogs 2020')
+    #import json
 
-    with open('games.json', 'w') as f:
-        json.dump(games, f)
+    #with open('games.json', 'w') as f:
+    #    json.dump(games, f)
 
     #with open('tournament.json', 'w') as f:
     #    json.dump(tournament, f)
@@ -266,3 +291,5 @@ if __name__ == '__main__':
 
     #with open('standings.json', 'w') as f:
         #json.dump(standings, f)
+
+    pprint(Leaguepedia.getMatchGroups('Underdogs 2020'))

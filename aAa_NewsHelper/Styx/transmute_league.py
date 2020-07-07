@@ -180,3 +180,47 @@ def transmute_match(game):
         tournament['Game'].append(_game)
 
     return tournament
+
+#Match Groups
+
+matchgroups_fields = {
+    "GroupDisplay",
+    "ShownName",
+    "Team1",
+    "Team2",
+    "Winner",
+    "DateTime_UTC",
+    "Team1Score",
+    "Team2Score",
+}
+
+class MatchGroup(TypedDict):
+    Team1: str
+    Team2: str
+    Winner: str
+    DateTime_UTC: str
+    Team1Score: int
+    Team2Score: int
+    GroupDisplay: int
+
+class MatchGroupTournament(TypedDict):
+    Tournament_Name: str
+
+def transmute_matchgroup(game):
+    d = defaultdict(list)
+    tournament = defaultdict(list)
+    d['Data'].append(game)
+    for m in d['Data']:
+        tournament = MatchGroupTournament(Tournament_Name = m["ShownName"] )
+        tournament['Game'] = []
+        _game =  MatchGroup(Groupe=m["GroupDisplay"],
+                            Team1=m["Team1"],
+                            Team2=m["Team2"],
+                            Winner=m["Winner"],
+                            DateTime_UTC=m["DateTime UTC"],
+                            Team1Score=m["Team1Score"],
+                            Team2Score=m["Team2Score"],)
+
+        tournament['Game'].append(_game)
+
+    return tournament
